@@ -3,7 +3,10 @@
 /*When doing these tasks, we recommend using console.log to test the output of your code to make sure it works correctly.*/
 
 ///////////////Menu Items (MVP)///////////////////
+
+
 const latte = {name: "Cafe Latte", price: 4, category: "Drinks"};
+
 const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakfast"};
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1a: Make a function that builds objects🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -16,11 +19,11 @@ The function should:
 */
 
 
-function createMenuItem(/*Your code here*/){
-  /*Your code here*/
+function createMenuItem(name, price, category){
+  return {name, price, category}
 }
 
-
+console.log('task 1a', createMenuItem('tacos', 8, 'lunch'));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Invoke your function!
@@ -31,6 +34,9 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
+console.log('task 1b:', createMenuItem('egg', 4, 'breakfast'))
+console.log('task 1b:', createMenuItem('sausage', 4, 'breakfast'))
+console.log('task 1b:', createMenuItem('pancakes', 8, 'breakfast'))
 
 
 
@@ -52,8 +58,18 @@ const burger = {
   price: 18, 
   category: "Lunch", 
   
+  discount: function(person){
+    if(person === 'teacher' || person === 'student'){
+      return this.price - (this.price * 0.25);
+    }else if(person === 'public'){
+      return this.price - (this.price * 0.10);
+    }else{
+      return 'wrong input'
+    }
+  }
 }
 
+console.log('task 2:', burger.discount('teacher'));
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -74,6 +90,8 @@ Using the reviews array above:
 */
 
 
+console.log('task 3:', reviews[5].feedback);
+
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -81,6 +99,9 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
+reviews[7].feedback = 'this place is chill with really cool people, great for getting work done on weekdays';
+
+console.log('task 4:', reviews[7].feedback);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -89,16 +110,21 @@ Write a function that creates an object with name, rating, feedback, add the new
 Use the addReview function below to do the following:
   1. Receive an array in the FIRST parameter (invoke with the reviews array above)
   2. Receive the following parameters: name, rating, and feedback; use them in the SECOND, THIRD, and FOURTH parameters (respectively)
+
   3. The function should construct and push a new object to the array parameter.
   🌟 EXAMPLE: addReview(reviews, 'Billy', 2, 'Lame food!') should add the following to the end of the array: {name: 'Billy', rating: 2, feedback: 'Lame food!'}
   4. Return the updated array
 */
 
 
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+
+
+function addReview(array, name, rating, feedback){
+  array.push({name, rating, feedback});
+  return array;
 }
 
+console.log('Task 5:', addReview(reviews, 'Billy', 2, 'Lame food'));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -112,11 +138,11 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(array, number) {
+  return `${array[number].name} gave the restaurant a ${array[number].rating} star review, and their feedback was: ${array[number].feedback}`;
 }
 
-  
+console.log('task 6', getReviewByIndex(reviews, 0));  
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -131,11 +157,11 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(array) {
+  return `${array[array.length -1].name} gave the restaurant a ${array[array.length -1].rating} star review, and their feedback was: ${array[array.length -1].feedback}`;
 } 
 
-
+console.log('Task 7:', getLastReview(reviews));
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
